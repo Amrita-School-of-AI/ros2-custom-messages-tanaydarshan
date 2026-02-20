@@ -9,19 +9,17 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
-# Generate message
+# Generate custom message
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/RobotStatus.msg"
 )
 
-# Publisher executable
 add_executable(status_publisher src/status_publisher.cpp)
 
 ament_target_dependencies(status_publisher
   rclcpp
 )
 
-# Link generated message
 rosidl_target_interfaces(status_publisher
   ${PROJECT_NAME} "rosidl_typesupport_cpp"
 )
